@@ -52,6 +52,7 @@ Resources:
           - Action:
               - s3:PutObject
               - s3:GetObject
+              - s3:HeadBucket
             Effect: Allow
             Resource:
             - Fn::Join:
@@ -107,7 +108,7 @@ Resources:
                     action: ExecuteBash
                     inputs:
                       commands:          
-                        - $(aws ecr get-login --no-include-email --region ca-central-1)
+                        - aws ecr get-login --no-include-email --region ${awsRegion}
                   - name: dockerpull
                     action: ExecuteBash
                     inputs:
