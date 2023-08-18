@@ -26,6 +26,7 @@ Resources:
       ManagedPolicyArns:
         - Fn::Sub: arn:${AWS::Partition}:iam::aws:policy/AmazonSSMManagedInstanceCore
         - Fn::Sub: arn:${AWS::Partition}:iam::aws:policy/EC2InstanceProfileForImageBuilder
+        - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
       AssumeRolePolicyDocument:
         Statement:
           - Action:
@@ -102,13 +103,15 @@ Resources:
                           git clone ${gitHub} rcl-echo-cloud --branch ${gitBranch}
                           cp /root/rcl-echo-cloud/backend/sqs-ec2/amazon-cloudwatch-agent.json /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json
                           cp /root/rcl-echo-cloud/backend/sqs-ec2/seelog.xml /etc/amazon/ssm/seelog.xml                          
-
+                  - name: dockerlogin
+                    action: ExecuteBash
+                    inputs:
+                      commands:          
+                        - $(aws ecr get-login --no-include-email --region ca-central-1)
                   - name: dockerpull
                     action: ExecuteBash
                     inputs:
                       commands:          
-                        - docker pull 114170599997.dkr.ecr.ca-central-1.amazonaws.com/covid-19-api:tag
-                        - docker tag  114170599997.dkr.ecr.ca-central-1.amazonaws.com/covid-19-api:tag covid-19-api:tag
                         - docker pull 114170599997.dkr.ecr.ca-central-1.amazonaws.com/view-classifier:tag
                         - docker tag  114170599997.dkr.ecr.ca-central-1.amazonaws.com/view-classifier:tag view-classifier:tag
           - gitHub: !Ref gitHubRepo
