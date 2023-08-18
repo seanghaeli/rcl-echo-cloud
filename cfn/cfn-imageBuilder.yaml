@@ -108,7 +108,8 @@ Resources:
                     action: ExecuteBash
                     inputs:
                       commands:          
-                        - aws ecr get-login --no-include-email --region ${awsRegion}
+                        - |
+                          aws ecr get-login-password --region ${awsRegion} | docker login --username AWS --password-stdin 114170599997.dkr.ecr.${awsRegion}.amazonaws.com
                   - name: dockerpull
                     action: ExecuteBash
                     inputs:
