@@ -123,11 +123,11 @@ Resources:
                     action: ExecuteBash
                     inputs:
                       commands:          
-                        - docker pull 114170599997.dkr.ecr.ca-central-1.amazonaws.com/view-classifier:latest
-                        - docker tag  114170599997.dkr.ecr.ca-central-1.amazonaws.com/view-classifier:latest view-classifier:latest
+                        - docker pull 114170599997.dkr.ecr.${awsRegion}.amazonaws.com/view-classifier:latest
+                        - docker tag  114170599997.dkr.ecr.${awsRegion}.amazonaws.com/view-classifier:latest view-classifier:latest
           - gitHub: !Ref gitHubRepo
             gitBranch: !Ref gitHubBranch
-            awsRegion: !Sub '{AWS::Region}'
+            awsRegion: !Sub '${AWS::Region}'
 
   ImageRecipe:
     Type: 'AWS::ImageBuilder::ImageRecipe'
