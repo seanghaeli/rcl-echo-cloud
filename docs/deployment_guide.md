@@ -29,7 +29,7 @@ In this step we will execute three Cloudformation scripts:
 
 ## Step 1.2: EC2 Image Builder
 
-1.  You also need the latest Deep Learning Amazon Machine Image (AMI) Id in the step. Please, run the command below to obtain it. **Make sure run this command on the region you are executing the solution, and also make sure your default profile is configured.**
+1.  You also need the latest Deep Learning Amazon Machine Image (AMI) Id in the step. Please, run the command below to obtain it. **Make sure you run this command on the region you are executing the solution, and also make sure your default profile is configured.**
 ```bash
 aws ec2 describe-images \
     --owners amazon \
@@ -63,7 +63,7 @@ aws ec2 describe-images \
 # Step 2: Lambda Function
 
 ## 2.1: Creating the Lambda Layer
-When an echo ultrasound is submitted to be processed, a Lambda function is triggered to perform inference on the view-classifier model on any .mat data loaded to S3 bucket, and uploads output to same bucket.
+When an echo ultrasound is submitted to be processed, a Lambda function is triggered to perform inference on the view-classifier model on any .mat data loaded to S3 bucket, and uploads output to the same bucket. **Make sure your default profile is configured.**
 
 1. Go to the directory <strong>/backend/lambda</strong> and execute:
 ```bash
