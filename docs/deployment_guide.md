@@ -29,6 +29,8 @@ In this step we will execute three Cloudformation scripts:
 
 ## Step 1.2: EC2 Image Builder
 
+#TODO: uploading private container to ECR
+
 1.  You also need the latest Deep Learning Amazon Machine Image (AMI) Id in the step. Please, run the command below to obtain it. **Make sure you run this command on the region you are executing the solution, and also make sure your default profile is configured.**
 ```bash
 aws ec2 describe-images \
