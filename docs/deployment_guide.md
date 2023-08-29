@@ -56,7 +56,7 @@ aws ec2 describe-images \
 2. Select 'Create Stack' with the 'With new resources (standard)' option.
 3. Click 'Upload a template file', and then 'Choose File' and select the **cfn-backend.yaml** located in the /cfn directory of the repo
 4. Click Next.
-5. Give the Stack name a name (e.g. covid-19-app-ImageBuilder).
+5. Give the Stack name a name (e.g. rcl-echo-cloud-ImageBuilder).
 6. Select a key-pair that you have defined on Step 2.1 item 7.
 7. On the S3Bucket field, find the name by going to S3 Management Console page and copying the name of the associated bucket which will be of the following form:
    * rcl-echo-cloud-imagebuilder-imagebuilderlogbucket-[unique identifier]
