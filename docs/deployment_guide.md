@@ -80,12 +80,18 @@ aws ec2 describe-images \
    - ```rcl-echo-cloud-imagebuilder-imagebuilderlogbucket-[unique identifier]```
 
 ## Step 1.5: Inference Script Initialization
-
-1. Start a session inside the EC2 instance associated with the prior deployment **Make sure your default profile is configured.**:
+**Make sure your default profile is configured.**:
+1. Start a session inside the EC2 instance associated with the prior deployment
 ```aws ssm start-session --target [ec2 instance id]`
-2. Use ```docker ps -a``` to locate the present containers and their IDs. If the container with your model is stopped, start it ```docker start [container ID]```.
-3. Open a shell inside the container using ```docker exec -it [container id] /bin/bash``.
-4. Start the inference script.
+This can also be done on the web interface by going to the EC2 Management Console, selecting the instance associated with the above deployment, clicking the "Actions" button, and selecting "connect"
+2. Download the repository from ECR manually by authenticating
+```aws ecr get-login-password --region [your region] | docker login --username AWS --password-stdin [you aws_account_id].dkr.ecr.[your region].amazonaws.com```
+    - If your account lacks it, you will need to give yourself the `ecr:GetAuthorizationToken` permission for your IAM User.
+And pull the docker container using the ECR URI, which you can find on the ECR Management Console under the listing for your model's docker container:
+```docker run -it [ECR URI]```
+3. Use ```docker ps -a``` to locate the present containers and their IDs. If the container with your model is stopped, start it ```docker start [container ID]```.
+4. Open a shell inside the container using ```docker exec -it [container id] /bin/bash``.
+5. Start the inference script.
 
 For example, using the view-classifier docker container, the inferencing can be initialized by doing `python3 run.py` from the root directory.
 
