@@ -77,7 +77,7 @@ aws ec2 describe-images \
 5. Give the Stack name a name (e.g. rcl-echo-cloud-ImageBuilder).
 6. Select a key-pair that you have defined on Step 2.1 item 7.
 7. On the S3Bucket field, find the name of the bucket by going to S3 Management Console page and copying the name of the associated bucket which will be of the following form:
-   * rcl-echo-cloud-imagebuilder-imagebuilderlogbucket-[unique identifier]
+   - ```rcl-echo-cloud-imagebuilder-imagebuilderlogbucket-[unique identifier]```
 
 ## Step 1.5: Inference Script Initialization
 
